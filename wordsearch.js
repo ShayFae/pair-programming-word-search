@@ -1,8 +1,19 @@
+const { transpose } = require('./transpose');
 const wordSearch = (letters, word) => { 
-    const horizontalJoin = letters.map(ls => ls.join(''))
-    for (l of horizontalJoin) {
-        if (l.includes(word)) return true
+    const crazy = (matrix) => {
+        const join = matrix.map(ls => ls.join(''));
+        for (const h of join) {
+            if (h.includes(word)) return true;
+        };
     }
-}
-
-module.exports = wordSearch
+    let callback1 = crazy(letters); 
+    if (callback1) {
+        return callback1;
+    }
+    let callback2 = crazy(transpose(letters));
+    if (callback2) {
+        return callback2;
+    }
+    return false;
+ };
+module.exports = wordSearch;
